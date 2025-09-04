@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Produtos</title>
+    <style>
+        body {
+            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+        header {
+            background-color: #ff69b4;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        header nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        header nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .catalogo {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 30px 20px;
+        }
+        .produto {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            text-align: center;
+            width: 30%;
+        }
+        .produto img {
+            width: 200px;           
+            height: auto;
+            border-radius: 5px;
+            display: block;
+            margin: 0 auto;         
+        }
+        .produto h3 {
+            color: #ff69b4;
+        }
+        .produto p {
+            color: #555;
+        }
+        .produto button {
+            background-color: #ff69b4;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .produto button:hover {
+            background-color: #ff3385;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Catálogo de Produtos</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="carrinho.html">Carrinho</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="catalogo">
+        <div class="produto" id="produto-1">
+            <img src="Uma seleção de vestidos lindos e exclusivos está….jpeg" alt="Vestido Floral">
+            <h3>Vestido Floral</h3>
+            <p>R$ 199,90</p>
+            <button onclick="adicionarCarrinho('Vestido Floral', 199.90)">Adicionar ao Carrinho</button>
+        </div>
+
+        <div class="produto" id="produto-2">
+            <img src="Captura de tela 2025-09-04 074202.png" alt="Blusa de Seda">
+            <h3>Blusa de Seda</h3>
+            <p>R$ 149,90</p>
+            <button onclick="adicionarCarrinho('Blusa de Seda', 149.90)">Adicionar ao Carrinho</button>
+        </div>
+
+        <div class="produto" id="produto-3">
+            <img src="EMILI LLANAMODA Short Saia Cargo Alfaiataria Liso Feminino Cintura Alta.jpeg" alt="Saia Cargo">
+            <h3>Saia Cargo</h3>
+            <p>R$ 119,90</p>
+            <button onclick="adicionarCarrinho('Saia Midi', 119.90)">Adicionar ao Carrinho</button>
+        </div>
+    </section>
+
+    <footer style="background-color: #333; color: white; text-align: center; padding: 10px;">
+        <p>&copy; 2025 Brenda Araujo. Todos os direitos reservados.</p>
+        <p>&copy; </p>
+    </footer>
+
+    <script>
+        let carrinho = [];
+
+        function adicionarCarrinho(nomeProduto, preco) {
+            let itemExistente = carrinho.find(item => item.nome === nomeProduto);
+            
+            if (itemExistente) {
+                itemExistente.quantidade += 1;
+            } else {
+                carrinho.push({ nome: nomeProduto, preco: preco, quantidade: 1 });
+            }
+
+            sessionStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+            alert(nomeProduto + ' foi adicionado ao carrinho!');
+        }
+    </script>
+</body>
+</html>
+
